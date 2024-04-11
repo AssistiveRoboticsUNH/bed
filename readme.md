@@ -18,8 +18,8 @@ BED is a BC model with an additional parameter vector $w$ of length $|D|$. It ut
 ``` 
 
 ### Download the data 
-* Layman V1.0 can data (download link is in progress)
-
+* Layman V1.0 can data <a href="https://universitysystemnh-my.sharepoint.com/:u:/g/personal/mb1215_usnh_edu/EdaW2mZ4mRpGg0CKbTEwG5UBbKCxqXqlGnyIHdhL-o8Ahw?e=gPEKTa">download</a>
+* Full dataset download link will be available soon.
 
 ### Training BED
 Run the following command to train the BED model

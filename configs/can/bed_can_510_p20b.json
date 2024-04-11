@@ -34,7 +34,7 @@
         }
     },
     "train": {
-        "data": "/home/ns1254/data_robomimic/carl_dataset/mixed_human_original/can_carl_mix_v3_510.hdf5",
+        "data": "/home/ns1254/data_robomimic/carl_dataset/mixed_human_original/layman_v1_can_510.hdf5",
         "output_dir": "/home/ns1254/training_data/can",
         "num_data_workers": 2,
         "hdf5_cache_mode": "low_dim",
