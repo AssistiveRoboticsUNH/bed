@@ -22,6 +22,7 @@ from bed_utils import estimate_first_goal, train_bed_path_demos_batch
 
 
 
+
 def main(args):
 
     ext_cfg = json.load(open(args.config, 'r'))
@@ -173,6 +174,19 @@ def main(args):
         print("Training interrupted by user")
         print("interrupted at epoch ", epoch)
 
+
+    #save the model
+    epoch_ckpt_name = "epoch_{}".format(epoch)
+    TrainUtils.save_model(
+            model=model,
+            config=config,
+            env_meta=None,
+            shape_meta=shape_meta,
+            ckpt_path=os.path.join(ckpt_dir, epoch_ckpt_name + ".pth"),
+            obs_normalization_stats=None,
+    )
+
+
     #lets print w and bmask
     w=ws 
     bmask= np.round(w ).astype(np.int8)   
@@ -266,3 +280,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     main(args)
+
+
+# /home/ns1254/robomimic/robomimic/models/obs_nets.py
+#585 self.latent=enc_outputs                 #TODO: remove?
+
+# python bed_training_path.py --config /home/ubuntu/BED/franka_config.json --m 0.67 --accelerate 40 --gscale 5 --batch_d 1

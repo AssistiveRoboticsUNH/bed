@@ -295,7 +295,7 @@ def train_bed_path_demos_batch(model, trainset, epoch, M, m_start, first_goal, d
             interps=np.stack(interpolated, axis=0)
 
             df=first_goal.detach().cpu().numpy() - interps
-            norms = np.linalg.norm(df, axis=(1, 2))
+            norms = np.linalg.norm(df, axis=(1, 2))            #TODO: changed to Mahalanobis distance
             norms=torch.tensor(norms)
             weighted_g_loss=(model.nets["policy"].nets["w"].weight[:, batch_i]*2*gscale) @ norms.to(device).float() 
 
