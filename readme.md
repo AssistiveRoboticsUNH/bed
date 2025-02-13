@@ -7,7 +7,8 @@ BED is a BC model with an additional parameter vector $w$ of length $|D|$. It ut
 ### Installation
 * Install Robomimic and Robosuite as follows https://robomimic.github.io/docs/introduction/installation.html
 
-* Add the two lines in the 'forward' function of class MIMO_MLP in "robomimic/robomimic/models/obs_nets.py" as shown below.
+* Add the two lines in the 'forward' function of class MIMO_MLP in ["robomimic/robomimic/models/obs_nets.py line 585"](https://github.com/ARISE-Initiative/robomimic/blob/9273f9cce85809b4f49cb02c6b4d4eeb2fe95abb/robomimic/models/obs_nets.py#L585) as shown below.
+
 ```python
     def forward(self, **inputs):
         enc_outputs = self.nets["encoder"](**inputs) 
