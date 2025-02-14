@@ -78,7 +78,8 @@ w:  [ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
   0.37 -0.   -0.   -0.    0.    1.  ]
 ```
 
-View the training log located in <a href="logs/20240408221524/logs">logs</a> to see how training looks like.
+View the training log located in <a href="logs/20240408221524/logs">logs</a> to see how training looks like. "logs/demos.txt" contains the list of all demo names used in the training. "logs/masked_0.txt" contains the name of the demos detected as bad.
+
 It tooks 47 minutes to train on a Single NVIDIA A40 GPU.
 
 
