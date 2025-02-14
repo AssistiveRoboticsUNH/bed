@@ -37,9 +37,10 @@ wget https://universitysystemnh-my.sharepoint.com/:u:/g/personal/mb1215_usnh_edu
 ```
 
 ### create configuration file
-We use the same configuration file as Robomimic. Please see the "bed/configs/can/bed_layman_can_p20b.json" file for an example configuration file. You can create a similar configuration file for other tasks. Based on the dataset you may want to change the following two lines.
+We use the same configuration file as Robomimic. Please see the "bed/configs/can/bed_layman_can_p20b.json" file for an example configuration file. You can create a similar configuration file for other tasks. Based on the dataset you may want to change the following three lines.
 ```bash
     "data": "dataset/layman_v1_can_510.hdf5",
+    "output_dir": "/home/ns1254/bed/training_data",
     "hdf5_filter_key": "p20b",
 ```
 
@@ -48,11 +49,11 @@ We use the same configuration file as Robomimic. Please see the "bed/configs/can
 
 Run the following command to train the BED model
 ```bash
-python bed_training_path.py --config path/config.json --m 0.8 --accelerate 40 --gscale 5
+python bed_training_path.py --config config_full_path.json --m 0.8 --accelerate 40 --gscale 5
 ```
 Example: Train BED on can data to detect 80% as good and 20% as bad. You can press Ctrl+C for early stopping.
 ```bash
-python bed_training_path.py --config configs/can/bed_can_510_p20b.json --m 0.8 --accelerate 40 --gscale 5
+python bed_training_path.py --config /home/ns1254/bed/configs/can/bed_layman_can_p20b.json --m 0.8 --accelerate 40 --gscale 5
 ```
 Explnation of the arguments:
 * --config: path to the configuration file

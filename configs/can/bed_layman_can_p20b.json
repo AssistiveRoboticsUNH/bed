@@ -35,7 +35,7 @@
     },
     "train": {
         "data": "dataset/layman_v1_can_510.hdf5",
-        "output_dir": "training_data",
+        "output_dir": "/home/ns1254/bed/training_data",
         "num_data_workers": 2,
         "hdf5_cache_mode": "low_dim",
         "hdf5_use_swmr": true,
