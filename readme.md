@@ -19,17 +19,40 @@ BED is a BC model with an additional parameter vector $w$ of length $|D|$. It ut
 ``` 
 
 ### Download the data 
-*  can_task data <a href="https://universitysystemnh-my.sharepoint.com/:u:/g/personal/mb1215_usnh_edu/EdaW2mZ4mRpGg0CKbTEwG5UBbKCxqXqlGnyIHdhL-o8Ahw?e=gPEKTa">download</a>
-* Layman V1.0 Full dataset [download link](https://universitysystemnh-my.sharepoint.com/:f:/g/personal/mb1215_usnh_edu/EpIt98g81rBBpVtUxi8pldsB-FthJ8I5FA650TxfQS2Ydw?e=ja4JNI)
+Use this [link](https://universitysystemnh-my.sharepoint.com/:f:/g/personal/mb1215_usnh_edu/EpIt98g81rBBpVtUxi8pldsB-FthJ8I5FA650TxfQS2Ydw?e=ja4JNI) to download the dataset. Put them in the bed/dataset folder. Or use the following commands
+```bash
+cd bed
+mkdir dataset
+cd dataset
 
-### Training BED
+# download can_task data
+wget https://universitysystemnh-my.sharepoint.com/:u:/g/personal/mb1215_usnh_edu/EdaW2mZ4mRpGg0CKbTEwG5UBbKCxqXqlGnyIHdhL-o8Ahw?download=1 -O layman_v1_can_510.hdf5
+
+# download square_task data
+wget https://universitysystemnh-my.sharepoint.com/:u:/g/personal/mb1215_usnh_edu/ERbUWCBrp1xAj49yUOmoHJ8B4x6G_1EgNaUNHiZsSd_V7g?download=1 -O layman_v1_square_180.hdf5
+
+# download lift_task data
+wget https://universitysystemnh-my.sharepoint.com/:u:/g/personal/mb1215_usnh_edu/EQyR2TBr5aZKusxWCnn0Y6ABJJXDNeHZL2vhUCq-4__9Sw?download=1 -O layman_v1_lift_260.hdf5
+
+```
+
+### create configuration file
+We use the same configuration file as Robomimic. Please see the "bed/configs/can/bed_layman_can_p20b.json" file for an example configuration file. You can create a similar configuration file for other tasks. Based on the dataset you may want to change the following two lines.
+```bash
+    "data": "dataset/layman_v1_can_510.hdf5",
+    "hdf5_filter_key": "p20b",
+```
+
+
+### Training BED 
+
 Run the following command to train the BED model
 ```bash
 python bed_training_path.py --config path/config.json --m 0.8 --accelerate 40 --gscale 5
 ```
-Example: Train BED on can 80% data. You can press Ctrl+C for early stopping.
+Example: Train BED on can data to detect 80% as good and 20% as bad. You can press Ctrl+C for early stopping.
 ```bash
-python bed_training_path.py --config path/configs/can/bed_can_510_p20b.json --m 0.8 --accelerate 40 --gscale 5
+python bed_training_path.py --config configs/can/bed_can_510_p20b.json --m 0.8 --accelerate 40 --gscale 5
 ```
 Explnation of the arguments:
 * --config: path to the configuration file
@@ -37,7 +60,7 @@ Explnation of the arguments:
 * --accelerate: use higher learning rate after this epoch for faster convergence
 * --gscale: importance of path loss
 
-Expected <b>w</b>: As there are 150 demos total, we expect 30 of them will get $w\approx0$ and 120 of them will get $w\approx1$. Rounding will make them binary. Here is the expected w vector before rounding:
+Expected <b>w</b>: As there are 150 demos total in the can dataset, for m=0.8 we expect 30 (150*0.2=30) of them will get $w\approx0$ and 120 of them will get $w\approx1$. Rounding will make them binary. Here is the expected w vector before rounding:
 ```bash
 w:  [ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
   1.    1.    1.    1.    1.    1.    1.    1.    0.49  1.    1.    1.
